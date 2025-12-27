@@ -1,0 +1,5 @@
+{
+  // Sort files in the Explorer by file type (extension).
+  // In this folder the order will be: .css, .html, .js — placing app.js at the bottom.
+  "explorer.sortOrder": "type"
+}

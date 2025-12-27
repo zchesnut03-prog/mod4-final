@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Movie Finder</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="navbar">
+    <div class="logo">MovieFinder</div>
+    <div class="links">
+      <a href="#" id="homeBtn" class="link">Home</a>
+      <a href="#" id="moviesBtn" class="link">Movies</a>
+      <button id="contactBtn" class="btn-contact">Contact</button>
+    </div>
+  </header>
+  <main class="page__wrapper">
+  <section id="landing-page">
+    <div class="content-wrapper">
+      <h1>Discover Your Favorite Movies</h1>
+      <div class="input-wrapper">
+        <input id="searchInputLanding" type="text" placeholder="Search for movies">
+        <button id="searchBtnLanding">Find Movies</button>
+      </div>
+      <div class="movie-image">
+  <img src="./undraw_horror-movie_9020.svg" alt="Featured movies">
+</div>
+    </div>
+  </section>
+  <section id="movies-page" class="hidden">
+    <div class="content-wrapper">
+      <h1>Search Results</h1>
+      <div class="input-wrapper">
+        <input id="searchInput" type="text" placeholder="Search for movies">
+        <button id="searchBtn">Search</button>
+      </div>
+      <div id="moviesContainer" class="movies-container"></div>
+    </div>
+  </section>
+</main>
+  <div id="contactModal" class="modal">
+    <div class="modal-content">
+      <span id="closeModal" class="close">&times;</span>
+      <h2>Contact Us</h2>
+      <form>
+        <input type="text" placeholder="Your Name">
+        <input type="email" placeholder="Your Email">
+        <textarea placeholder="Message"></textarea>
+        <button type="submit">Send</button>
+      </form>
+    </div>
+  </div>
+<div id="loadingOverlay" class="loading hidden">
+  <div class="loader-content">
+    <div class="spinner"></div>
+    <p>Finding movies...</p>
+  </div>
+</div>
+
+
+  <script src="app.js"></script>
+</body>
+</html>
