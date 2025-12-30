@@ -94,9 +94,15 @@ window.addEventListener('click', (e) => {
     try {
       const response = await fetch(url);
       const data = await response.json();
+      const sortedMovies = data.Search
+  .sort((a, b) => Number(b.Year) - Number(a.Year))
+  .slice(0, 6);
+
+displayMovies(sortedMovies);
 
       if (data.Response === 'True') {
-        displayMovies(data.Search.slice(0, 6));
+
+
       } else {
         moviesContainer.innerHTML = `<p>No movies found</p>`;
       }
