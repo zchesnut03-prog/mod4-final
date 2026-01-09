@@ -1,4 +1,3 @@
-document.addEventListener('DOMContentLoaded', () => {
 
   // Navbar buttons
   const moviesBtn = document.getElementById('moviesBtn');
@@ -113,17 +112,38 @@ displayMovies(sortedMovies);
   }
 
   function displayMovies(movies) {
-    moviesContainer.innerHTML = '';
-    movies.forEach(movie => {
-      const card = document.createElement('div');
-      card.className = 'movie-card';
-      card.innerHTML = `
-        <img src="${movie.Poster !== 'N/A' ? movie.Poster : ''}">
-        <h3>${movie.Title}</h3>
-        <p>${movie.Year}</p>
-      `;
-      moviesContainer.appendChild(card);
-    });
-  }
+  moviesContainer.innerHTML = '';
 
-});
+  movies.forEach(movie => {
+    const card = document.createElement('div');
+    card.className = 'movie-card';
+
+    card.innerHTML = `
+      <img src="${movie.Poster !== 'N/A' ? movie.Poster : ''}">
+      <h3>${movie.Title}</h3>
+      <p>${movie.Year}</p>
+    `;
+
+    card.addEventListener('click', () => {
+      openMovieDetails(movie.imdbID);
+    });
+
+    moviesContainer.appendChild(card);
+  });
+}
+
+async function openMovieDetails(imdbID) {
+  const apiKey = 'c24179a6';
+  const url = `https://www.omdbapi.com/?apikey=${apiKey}&i=${imdbID}&plot=full`;
+
+  try {
+    const res = await fetch(url);
+    const movie = await res.json();
+
+    // TEMP: just to prove it works
+    alert(`${movie.Title}\n\n${movie.Plot}`);
+
+  } catch (err) {
+    console.error(err);
+  }
+}
