@@ -17,6 +17,13 @@
   const searchBtnLanding = document.getElementById('searchBtnLanding');
   const searchInputLanding = document.getElementById('searchInputLanding');
 
+  const movieModal = document.getElementById('movieModal');
+const modalPoster = document.getElementById('modalPoster');
+const modalTitle = document.getElementById('modalTitle');
+const modalOverview = document.getElementById('modalOverview');
+ const closeMovieModal = document.getElementById('closeMovieModal');
+
+
   // Spinner
   const spinner = document.createElement('div');
   spinner.className = 'spinner';
@@ -75,15 +82,33 @@
   contactModal.classList.add('active');
 });
 
-closeModal.addEventListener('click', () => {
+document.getElementById('closeModal').addEventListener('click', () => {
   contactModal.classList.remove('active');
 });
+
 
 window.addEventListener('click', (e) => {
   if (e.target === contactModal) {
     contactModal.classList.remove('active');
   }
 });
+
+closeMovieModal.addEventListener('click', (e) => {
+  e.stopPropagation(); // 🔥 THIS IS THE KEY
+  movieModal.classList.remove('active');
+  document.body.style.overflow = '';
+});
+
+
+movieModal.addEventListener('click', (e) => {
+  if (e.target === movieModal) {
+    movieModal.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+});
+
+
+
 
   // Movie fetch
   async function fetchMovies(query) {
@@ -132,6 +157,7 @@ displayMovies(sortedMovies);
   });
 }
 
+
 async function openMovieDetails(imdbID) {
   const apiKey = 'c24179a6';
   const url = `https://www.omdbapi.com/?apikey=${apiKey}&i=${imdbID}&plot=full`;
@@ -140,8 +166,14 @@ async function openMovieDetails(imdbID) {
     const res = await fetch(url);
     const movie = await res.json();
 
-    // TEMP: just to prove it works
-    alert(`${movie.Title}\n\n${movie.Plot}`);
+    // Fill modal content
+    modalPoster.src = movie.Poster !== 'N/A' ? movie.Poster : '';
+    modalTitle.textContent = movie.Title;
+    modalOverview.textContent = movie.Plot;
+
+    // Show full-screen modal
+    movieModal.classList.add('active');
+    document.body.style.overflow = 'hidden';
 
   } catch (err) {
     console.error(err);
