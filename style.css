@@ -520,3 +520,66 @@ body {
 }
 
 
+/* Movie modal */
+
+/* Tablets & small laptops */
+@media (max-width: 1024px) {
+  .movie-modal-content {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 80px 24px 40px;
+    gap: 24px;
+  }
+
+  .movie-modal-content img {
+    width: 260px;
+  }
+
+  .movie-modal-content h1 {
+    font-size: 2rem;
+  }
+
+  .movie-modal-content p {
+    font-size: 1rem;
+  }
+}
+
+/* Phones */
+@media (max-width: 600px) {
+  .movie-modal-content {
+    padding: 72px 16px 32px;
+  }
+
+  .movie-modal-content img {
+    width: 200px;
+  }
+
+  .movie-modal-content h1 {
+    font-size: 1.6rem;
+  }
+
+  .movie-modal-content p {
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+
+  .movie-close {
+    top: 14px;
+    right: 18px;
+    font-size: 26px;
+  }
+}
+
+/* Very small phones */
+@media (max-width: 380px) {
+  .movie-modal-content img {
+    width: 170px;
+  }
+
+  .movie-modal-content h1 {
+    font-size: 1.4rem;
+  }
+}
+
+
